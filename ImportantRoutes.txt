@@ -25,3 +25,8 @@ Now, you only get redirected, if the full path is ''  (so only if you got NO oth
     // complex calculation
     this.router.navigate(['/servers', id, 'edit'], {queryParams: {allowEdit: '1'}, fragment: 'loading'});
   }
+
+// this routes.navigate does not know about the relative and absolute path i.e in this there is no conpect of relative and absolute
+
+
+[routeLinkActive]  :- there is concept of relative and absolute path.. ['user'] // relative    ['/user'] // absolute i.e localhost:4200/user

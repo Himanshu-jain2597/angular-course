@@ -1,0 +1,172 @@
+Angular is a javascript framework which allows us to create single reactive single page application(SPA).
+
+
+in angular we uses components to build our app
+
+Q- How an Angulalar apps get loaded and started ??
+Ans:- app.component.html is not a file which is served by server. infact index.html is a file which is served by the server.  SPA means angular serves only single page i.e index.html. 
+
+main.ts is a important file :- our angular app starts by this file 
+import { AppModule } from './app/app.module';
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err => console.error(err));
+
+
+Here AppModule is a same module which is App.module.ts.. 
+bootstrap: [AppComponent]
+
+
+from main.ts file angular comes to know about the app-component and then serve the same in index.html file. 
+
+
+components are key features in angular. we build our angular file by compoments. 
+
+
+app component is main component in angular app and app component selector will be added in index.html file while another component will be added in add component
+
+Component:- Component is a basically a typescrpt class by adding @Component decorter
+
+Angular used to bundle the component into packages.. 
+
+if we want to register a new component then we have to add in declaration array in app.module.ts file 
+
+To Select a element by attribute
+in server.ts file 
+Selector: [app-server]
+
+
+in app.html file
+<div app-server></div>
+
+
+To Select a element by class
+in server.ts file 
+Selector: '.app-server',
+
+
+in app.html file
+<div class="app-server"></div>
+
+
+Q- What is Data binding
+Ans:- Data binding is basically a communication between your typescript file and html file.
+String-Interpolation {{data}}
+Property binding  ([property]="data")
+event binding when user clicks a button some typescript code will execute ((event) = "expression")
+Two way binding ([(ngModel)]="data")
+
+
+Q- What is directives
+Ans:- Directives are instructions in the DOM. 
+
+All properties of components are accessable inside the component not the outside of component.. 
+To pass the properties from parent component to child component we have to use @Input() decorter... i.e child component can now accept property from parent ..
+for ex:- sending name from app.component to test.component
+
+in app.component.ts file:- 
+public name  = 'himanshu';
+
+in app.component.html file:- 
+<app-test [parentData]= "name"></app-test>
+
+
+in test.component.ts file:- 
+@Input() parentData;
+
+
+
+To pass the properties from child component to parent component we have to use @Output() decorter... i.e parent component can now accept property from child.. child component can send data to parent component using events.. 
+in test.component.ts file:- 
+@Output() public childEvent  = new EventEmitter()
+fireEvent() {
+this.childEvent.emit('Hey Jain');
+}
+
+in test.component.html file:- 
+<button (click)="fireEvent()">Send Event</button>
+
+
+in app.component.html file:-
+<app-test (childEvent)="message=$event" [parentData]= "name"></app-test>
+
+in app.component.ts file:- 
+public name  = 'himanshu';
+public message=""
+
+
+
+
+LifeCycle hooks in angular:- 
+ngOnChanges:-  callled after a bound propery changes...
+ngOnInit:- called once the component is initalized...
+ngDoCheck:- called during eveery change detection run.. 
+
+
+Dependency Injection:- 
+without dependency injection our code is not flexible. everytime no of parameter of child class constructor changes. we have to change in parent class.
+without dependency injection our code is not suitable for testing. 
+class car {
+
+engine  =  new engine()
+tire =  new tire() // here car depend on engine and tire constructor...
+}
+
+
+
+Dependency injection as a design pattern 
+var myengine = new engine();
+var mytire =  new tires();
+var mycares = new Car(myengine,mytire);  // here car does not depend on engine and tire constructor
+
+Dependency injection as a framework:- 
+we have injector in DI as a framework.. 
+
+
+injectable as a decorter:- injectable is a way to tell that dependency injection is a possible through class.... 
+
+when to use injectable decorter:- 
+1. A class which does not have any another decorter. but have another dependency then we should use injectable decorter. for ex:- a service class can have dependcy on http 
+
+
+
+RouterModule.forRoot([
+      { path: 'welcome', component: WelcomeComponent },
+      { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+      { path: '**', component: 'pageNotFoundComponent' }
+    ])
+Case 1 pathMatch:'full': In this case, when app is launched on localhost:4200 (or some server) the default page will be welcome screen, since the url will be https://localhost:4200/
+
+If https://localhost:4200/gibberish this will redirect to pageNotFound screen because of path:'**' wildcard
+
+Case 2 pathMatch:'prefix':
+
+If the routes have { path: '', redirectTo: 'welcome', pathMatch: 'prefix' }, now this will never reach the wildcard route since every url would match path:'' defined.
+
+
+routerLink in angular:- 
+<a routerLink='/user/bob'                     // will navigate to user/bob 
+routerLinkActive = "class-name"                // which link is active
+
+** route:- it should be last in route array because router algorithim will try to match from the top. if wild route is at top. it will match every routes... 
+
+
+
+
+
+To read Route Parameters:- 
+let id  =  parseInt(this.route.snapshot.paramMap.get(('id'))    // this approch has a drawbacks angular will check if he has to initalize  a component or can use a previous one
+
+To overcome this drawbacks:- 
+paramsMap observable : -
+this.route.params
+    .subscribe((params:Params)=> {
+      this.id = +params['id'];
+      this.recipe = this.recipeService.getRecipe(this.id);
+    })
+    
+
+
+
+
+
+

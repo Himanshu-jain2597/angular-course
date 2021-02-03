@@ -8,9 +8,12 @@ To write an absolute path-name:
 
 Start at the root directory ( / ) and work down.
 Write a slash ( / ) after every directory name (last one is optional)
-
+routerLink =["/user"]   // domain path+ user
 
 
 Relative path
 
 Relative path is defined as the path related to the present working directly(pwd). It starts at your current directory and never starts with a / .
+
+
+routerLink =["user"]   //   current path+ user  

@@ -1,0 +1,16 @@
+A path is a unique location to a file or a folder in a file system of an OS.A path to a file is a combination of / and alpha-numeric characters.
+
+Absolute Path-name
+
+An absolute path is defined as the specifying the location of a file or directory from the root directory(/).
+
+To write an absolute path-name:
+
+Start at the root directory ( / ) and work down.
+Write a slash ( / ) after every directory name (last one is optional)
+
+
+
+Relative path
+
+Relative path is defined as the path related to the present working directly(pwd). It starts at your current directory and never starts with a / .

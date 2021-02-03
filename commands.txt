@@ -1,0 +1,19 @@
+  
+To install angular globally on machine  
+run this command 
+npm install -g @angular/cli
+
+
+To create angular project first of all navigate to folder where u want to create the project then run this command
+ng new project-name like my-first-app
+
+
+the server of angular by default is localhost:4200 .
+
+
+To run angular app 
+ng serve
+
+
+To generate a component 
+ng g c (component name)
